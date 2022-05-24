@@ -1,0 +1,208 @@
+name: 'App Auth'
+description: |-
+
+  All auth related methods for Apps via API
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/register
+    metadata:
+      title: 'Register new user'
+      description: 'A new user can register, but an admin has to authorize'
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      title: 'Login (via API)'
+      description: |-
+        once logged in, we need to send the following to client
+        1. user record
+        2. access token
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'The email of the user.'
+        required: true
+        example: manager@test.com
+        type: string
+      password:
+        name: password
+        description: 'The password of the user.'
+        required: true
+        example: secret
+        type: string
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/serverStatus
+    metadata:
+      title: serverStatus
+      description: |-
+        Check this status before calling any api method.
+        If the status is not 'ready', dont proceed with it, show a modal
+
+        Enum ('ready','maintenance','updating')
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '{}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '59'
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/forgotPasswordEmail
+    metadata:
+      title: forgotPasswordEmail
+      description: 'If email found in the user table, send email with link to reset password'
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/logout
+    metadata:
+      title: logout
+      description: 'Logout and delete the token'
+      authenticated: true
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/profile
+    metadata:
+      title: getSettings
+      description: 'Get user settings of ogged in user'
+      authenticated: true
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/profile
+    metadata:
+      title: setSettings
+      description: 'Update current user settings'
+      authenticated: true
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the user.'
+        required: false
+        example: Siripala
+        type: string
+      phone:
+        name: phone
+        description: 'The phone.'
+        required: false
+        example: '0112123456'
+        type: string
+      theme:
+        name: theme
+        description: 'The theme id.'
+        required: false
+        example: 1
+        type: integer
+      password:
+        name: password
+        description: 'The user password.'
+        required: false
+        example: secret
+        type: string
+      avatar:
+        name: avatar
+        description: 'The user avatar.'
+        required: false
+        example: null
+        type: file
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/dashboard
+    metadata:
+      title: Dashboard
+      description: 'Use this for pulldown-to-refresh function of the app dashbaord'
+      authenticated: true
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []

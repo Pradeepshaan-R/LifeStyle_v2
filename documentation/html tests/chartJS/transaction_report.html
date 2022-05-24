@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Hello, world!</title>
+
+    <script>
+        const totalOnline_data = {
+            labels: [
+                'Red',
+                'Blue',
+                'Yellow'
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const totalOnline_config = {
+            type: 'doughnut',
+            data: totalOnline_data,
+        };
+    </script>
+
+    <script>
+        const totalOffline_data = {
+            labels: [
+                'Red',
+                'Blue',
+                'Yellow'
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const totalOffline_config = {
+            type: 'doughnut',
+            data: totalOffline_data,
+        };
+    </script>
+
+    <script>
+        const totalAll_labels = [
+            'January',
+            'February',
+            'March',
+        ];
+        const totalAll_data = {
+            labels: totalAll_labels,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [30, 10, 5],
+            }]
+        };
+
+        const totalAll_config = {
+            type: 'bar',
+            data: totalAll_data,
+            options: {}
+        };
+
+        window.onload = function() {
+            var totalOnline = new Chart(
+                document.getElementById('totalOnline'),
+                totalOnline_config
+            );
+            var totalOffline = new Chart(
+                document.getElementById('totalOffline'),
+                totalOnline_config
+            );
+
+            var totalAll = new Chart(
+                document.getElementById('totalAll'),
+                totalAll_config
+            );
+
+
+        }
+    </script>
+
+</head>
+
+<body class="container">
+    <main>
+        <section class="row">
+            <aside class="card col">
+                <div class="card-body">
+                    <h5 class="card-title">Transaction Report</h5>
+                    <form>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="First name">
+                            </div>
+                            <div class="col">
+                                <input type="date" class="form-control" placeholder="Last name">
+                            </div>
+                            <div class="col">
+                                <input type="submit" class="btn btn-warning" value="Submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </aside>
+        </section>
+
+        <section class="row mt-3">
+            <aside class="card col mr-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Online Report</h5>
+                    <canvas id="totalOnline"></canvas>
+                </div>
+            </aside>
+            <aside class="card col mr-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Offline Report</h5>
+                    <canvas id="totalOffline"></canvas>
+                </div>
+            </aside>
+            <aside class="card col">
+                <div class="card-body">
+                    <h5 class="card-title">Total Report</h5>
+                    <canvas id="totalAll"></canvas>
+                </div>
+            </aside>
+        </section>
+
+        <section class="row mt-3">
+            <aside class="card col">
+                <div class="card-body">
+                    <h5 class="card-title">Latest Transactions Report </h5>
+                    <table class="table table-striped  table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Http\Controllers\Backend;
+
+use App\Models\Stock;
+use App\Models\Product;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class StockController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $stock_list = Stock::select('*');
+
+        $stock_list = $stock_list->paginate(config('app.pagination'));
+
+        return view('backend.stock.list', ['stock_list' =>  $stock_list]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('backend.stock.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Stock  $stock
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Stock $stock)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Stock  $stock
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Stock $stock)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Stock  $stock
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Stock $stock)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Stock  $stock
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Stock $stock)
+    {
+        //
+    }
+}

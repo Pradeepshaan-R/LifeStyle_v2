@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #googleMap {
+            height: 100%;
+        }
+     
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+#right-panel {
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+#right-panel select,
+#right-panel input {
+  font-size: 15px;
+}
+
+#right-panel select {
+  width: 100%;
+}
+
+#right-panel i {
+  font-size: 12px;
+}
+
+#right-panel {
+  height: 100%;
+  float: right;
+  width: 390px;
+  overflow: auto;
+}
+
+#googleMap {
+  margin-right: 400px;
+}
+
+
+@media print {
+  #googleMap {
+    height: 500px;
+    margin: 0;
+  }
+
+  #right-panel {
+    float: none;
+    width: auto;
+  }
+}
+    </style>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXp_AnN9Gy3uJIDr1q0C0JSJtISsrJCOA&libraries=places&callback=myMap"
+        type="text/javascript">
+        </script>
+    <script>
+        function myMap() {
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+            const directionsService = new google.maps.DirectionsService();
+            const map = new google.maps.Map(document.getElementById("googleMap"), {
+                zoom: 5,
+                center: {
+                    lat: 9.68717,
+                    lng: 80.02616
+                },
+            });
+            directionsRenderer.setMap(map);
+            directionsRenderer.setPanel(document.getElementById("right-panel"));
+
+            const onChangeHandler = function () {
+                calculateAndDisplayRoute(directionsService, directionsRenderer);
+            };
+            document.getElementById("btn-location").addEventListener("click", onChangeHandler);
+        }
+
+        function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+            const start = document.getElementById("start").value;
+            const end = document.getElementById("end").value;
+            directionsService.route({
+                origin: start,
+                destination: end,
+                travelMode: google.maps.TravelMode.DRIVING,
+            },
+                (response, status) => {
+                    if (status === "OK") {
+                        directionsRenderer.setDirections(response);
+                    } else {
+                        window.alert("Directions request failed due to " + status);
+                    }
+                }
+            );
+        }
+    </script>
+</head>
+
+<body>
+    <button type="button" id="btn-location"> Click</button>
+    <div id="right-panel"></div>
+    <div id="googleMap"></div>
+
+    <input id="start" type="hidden" value="9.6869606, 80.0261671" />
+    <input id="end" type="hidden" value="9.686028, 80.036460" />
+
+</body>
+
+</html>

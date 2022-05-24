@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+   <title>TAX INVOICE</title>
+   <style>
+      h2 {
+         text-align: right;
+      }
+
+      table {
+         border: 1px solid black;
+      }
+
+      table.vat-svat {
+         width: 300px;
+         text-align: left;
+         padding: 2px;
+         margin: 0px 0px 15px;
+      }
+
+      table.bill-to {
+         width: 350px;
+         text-align: left;
+         margin: 0px 0px 15px;
+         float: left;
+      }
+
+      table.bill-to th {
+         border-bottom: 1px solid black;
+         text-align: left;
+         padding: 4px;
+      }
+
+      table.bill-to td {
+         height: 123px;
+      }
+
+      table.date-invoce {
+         float: right;
+         text-align: left;
+      }
+
+      table.date-invoce td {
+         border: 1px solid black;
+         width: 100px;
+         text-align: center;
+      }
+
+      table.description {
+         float: left;
+         width: 100%;
+      }
+
+      table.description td {
+         border: 1px solid black;
+         height: 350px;
+      }
+
+      table.description th {
+         border: 1px solid black;
+      }
+
+
+      table.vat {
+         /*border: 1px solid black;*/
+         float: left;
+         width: 100%;
+         text-align: center;
+      }
+
+      table.vat td {
+         border: 1px solid black;
+      }
+
+      body {
+         margin: 112px 250px;
+      }
+      p.groove{
+         border-style: groove;
+         text-align: left;
+         float:inline-end;
+      }
+      
+
+   </style>
+</head>
+
+<body>
+   <table class="vat-svat">
+      <tr>
+         <th>VAT No.</th>
+         <td>134047542-7000</td>
+      </tr>
+      <tr>
+         <th>SVAT No.</th>
+         <td>007556</td>
+      </tr>
+   </table>
+
+   <h2>TAX INVOICE</h2>
+
+   <table class="bill-to">
+      <tr>
+         <th>Bill To</th>
+      </tr>
+      <tr>
+         <td rowspan="10"></td>
+      </tr>
+   </table>
+
+   <table class="date-invoce">
+      <tr>
+         <td>Date</td>
+         <td>1/1/2020</td>
+      </tr>
+      <tr>
+         <td>Invoice #</td>
+         <td>DN 188</td>
+      </tr>
+   </table>
+
+
+   <table class="description">
+      <tr>
+         <th width="70%">Description</th>
+         <th width="10">Quantity</th>
+         <th width="10%">Rate</th>
+         <th width="10%">Amount</th>
+      </tr>
+
+
+      <tr>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+   </table>
+
+   <br />
+   <table class="vat">
+
+      <tr>
+         <th width="70%"></th>
+         <th width="10"></th>
+         <th width="10%"></th>
+         <th width="10%"></th>
+      </tr>
+
+
+      <tr>
+
+         <th rowspan="2"></th>
+         <td colspan="2"><b>VAT (0.0)%</b></td>
+         <td>LKR 0.00</td>
+
+      </tr>
+
+      <tr>
+
+         <td colspan="2"><b>Total</b></td>
+         <td>LKR 0.00</td>
+      </tr>
+
+   </table>
+
+   <p style="float:left;">Cheque should be drawn in favour of<br>
+      "ORION TOWERS LIMITED."<br>
+   </p>
+<br>
+   <p style="float:left;">Prepared by .................... </p><p style="float: right;">Received by.............</p>
+   <p style="float:left;">Authorised by .................... </p><p style="float: right;"></p>Date...................</p>
+   
+   <p class="groove">Remark <br>
+      Payment should be made as per the agreed payment terms stated in the signed agreement. Any delays will be subject
+      to penalties as stipulated in the signed agreement.
+   </p>
+</body>
+
+</html>

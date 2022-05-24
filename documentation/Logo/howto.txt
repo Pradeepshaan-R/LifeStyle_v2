@@ -1,0 +1,41 @@
+If using PNG
+-----------------------------
+Max: 256x56 (Logo height: 30)
+Min: 56x56 (Logo 46x46)
+
+If using SVG
+-----------------------------
+In Illustrator, make sure you use the Export as dialog (File > Export > Export As...). The Export dialog was made specifically for exporting files for web use, while the Save As dialog was made for saving a file for later reopening in AI. This means Export gives you a lot of extra options the Save As dialog doesn't include.
+
+To save your artwork artwork as SVG, choose File > Export > SVG (svg).
+
+Check Use Artboards if you’d like to export the contents of your artboards as individual SVG files. Click Export to open the SVG Options dialog.
+
+Note: If the Use Artboards checkbox is left unchecked, the SVG file's viewport will be set by the combined bounds of all the objects in the document.
+
+BEST --> https://medium.com/@colinlord/how-to-export-svgs-for-the-web-from-illustrator-829bc1c841f6
+https://helpx.adobe.com/illustrator/how-to/export-svg.html
+https://www.freecodecamp.org/news/use-svg-images-in-css-html
+
+
+
+
+ORIGINAL
+resources/views/backend/includes/header.blade.php
+-------------------------------------------------
+<a class="c-header-brand d-lg-none" href="#">
+    <svg width="118" height="46" alt="Logo">
+        <use xlink:href="{{ asset('img/brand/coreui.svg#full') }}"></use>
+    </svg>
+</a>
+
+resources/views/backend/includes/sidebar.blade.php
+-------------------------------------------------
+<div class="c-sidebar-brand d-lg-down-none">
+    <svg class="c-sidebar-brand-full" width="118" height="46" alt="Logo max">
+        <use xlink:href="{{ asset('img/brand/coreui.svg#full') }}"></use>
+    </svg>
+    <svg class="c-sidebar-brand-minimized" width="46" height="46" alt="Logo min">
+        <use xlink:href="{{ asset('img/brand/coreui.svg#signet') }}"></use>
+    </svg>
+</div>

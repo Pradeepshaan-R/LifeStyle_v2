@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+</head>
+
+<body>
+    <h3>ChartJS example - Line chart</h3>
+    <a href="https://www.chartjs.org/">Docs</a>
+    <a href="https://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/#2-line-chart">Sample charts</a>
+
+    <canvas id="line-chart" width="800" height="450"></canvas>
+
+    <script>
+        window.onload = function () {
+
+            new Chart(document.getElementById("line-chart"), {
+                type: 'line',
+                data: {
+                    labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
+                    datasets: [{
+                        data: [86, 114, 106, 106, 107, 111, 700, 800, 900, 950, 1000, 2000],
+                        label: "Target",
+                        borderColor: "#3e95cd",
+                        fill: true
+                    }, {
+                        data: [282, 350, 411, 502, 635, 809, 947, 1402, 1800, 2867, 2000, 1900],
+                        label: "Ongoing",
+                        borderColor: "#8e5ea2",
+                        fill: false
+                    }, {
+                        data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734, 750, 800],
+                        label: "Closed",
+                        borderColor: "#3cba9f",
+                        fill: false
+                    }, {
+                        data: [40, 20, 10, 16, 24, 38, 74, 167, 508, 784, 800, 850],
+                        label: "Won",
+                        borderColor: "#e8c3b9",
+                        fill: false
+                    }
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Sales progress for 2021'
+                    }
+                }
+            });
+
+        }
+    </script>
+</body>
+
+</html>

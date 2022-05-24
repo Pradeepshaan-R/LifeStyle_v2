@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            JQuery | detect a textbox's content has changed.
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    </head>
+
+    <body style="text-align:center;" id="body">
+        <h1 style="color:green;">
+            Input Change detect
+        </h1>
+        <p>
+            Change the text of input text and click outside of it to see.
+        </p>
+        <input id="input1" name="input1" /> <button id="btn1">Add</button><br />
+        <input
+            id="input2"
+            name="input2"
+            onChange="$('#btn2').prop('disabled', true);"
+        />
+        <button id="btn2">Add</button>
+        <br />
+        <br />
+        <script>
+            $("#input1").change(function() {
+                $("#btn1").prop("disabled", true);
+                alert("Text content changed!");
+            });
+        </script>
+    </body>
+</html>

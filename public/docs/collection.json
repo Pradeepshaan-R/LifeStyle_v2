@@ -1,0 +1,1116 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "localhost"
+        }
+    ],
+    "info": {
+        "name": "Share Colombo Template",
+        "_postman_id": "5f20358a-c6d6-41c6-b010-bf7a54f7125a",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "App Auth",
+            "description": "\nAll auth related methods for Apps via API",
+            "item": [
+                {
+                    "name": "Register new user",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/register",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "A new user can register, but an admin has to authorize",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Login (via API)",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/login",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"manager@test.com\",\"password\":\"secret\"}"
+                        },
+                        "description": "once logged in, we need to send the following to client\n1. user record\n2. access token",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "serverStatus",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/serverStatus",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/serverStatus"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Check this status before calling any api method.\nIf the status is not 'ready', dont proceed with it, show a modal\n\nEnum ('ready','maintenance','updating')",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "forgotPasswordEmail",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/forgotPasswordEmail",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/forgotPasswordEmail"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "If email found in the user table, send email with link to reset password",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "logout",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/logout",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Logout and delete the token"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "getSettings",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/profile",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/profile"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Get user settings of ogged in user"
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "setSettings",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/profile",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/profile"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "Siripala",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "phone",
+                                    "value": "0112123456",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "theme",
+                                    "value": 1,
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "password",
+                                    "value": "secret",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "avatar",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": "Update current user settings"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Dashboard",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/dashboard",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/dashboard"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Use this for pulldown-to-refresh function of the app dashbaord"
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Books",
+            "description": "\nAPIs for managing books",
+            "item": [
+                {
+                    "name": "index",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/book",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/book"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Display a listing of the resource."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "max-age=0, must-revalidate, no-cache, no-store, private"
+                                },
+                                {
+                                    "key": "location",
+                                    "value": "http:\/\/localhost"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "54"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "pragma",
+                                    "value": "no-cache"
+                                },
+                                {
+                                    "key": "expires",
+                                    "value": "Fri, 01 Jan 1990 00:00:00 GMT"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 302,
+                            "body": "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\" \/>\n        <meta http-equiv=\"refresh\" content=\"0;url='http:\/\/localhost'\" \/>\n\n        <title>Redirecting to http:\/\/localhost<\/title>\n    <\/head>\n    <body>\n        Redirecting to <a href=\"http:\/\/localhost\">http:\/\/localhost<\/a>.\n    <\/body>\n<\/html>",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "create",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/book\/create",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/book\/create"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Show the form for creating a new resource."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "max-age=0, must-revalidate, no-cache, no-store, private"
+                                },
+                                {
+                                    "key": "location",
+                                    "value": "http:\/\/localhost"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "53"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "pragma",
+                                    "value": "no-cache"
+                                },
+                                {
+                                    "key": "expires",
+                                    "value": "Fri, 01 Jan 1990 00:00:00 GMT"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 302,
+                            "body": "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\" \/>\n        <meta http-equiv=\"refresh\" content=\"0;url='http:\/\/localhost'\" \/>\n\n        <title>Redirecting to http:\/\/localhost<\/title>\n    <\/head>\n    <body>\n        Redirecting to <a href=\"http:\/\/localhost\">http:\/\/localhost<\/a>.\n    <\/body>\n<\/html>",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "store",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/book",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/book"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Store a newly created resource in storage.\nUses transactions to prevent partial data updates"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "show",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/book\/:id",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/book\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "id of the book to view."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Display the specified resource."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "max-age=0, must-revalidate, no-cache, no-store, private"
+                                },
+                                {
+                                    "key": "location",
+                                    "value": "http:\/\/localhost"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "52"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "pragma",
+                                    "value": "no-cache"
+                                },
+                                {
+                                    "key": "expires",
+                                    "value": "Fri, 01 Jan 1990 00:00:00 GMT"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 302,
+                            "body": "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\" \/>\n        <meta http-equiv=\"refresh\" content=\"0;url='http:\/\/localhost'\" \/>\n\n        <title>Redirecting to http:\/\/localhost<\/title>\n    <\/head>\n    <body>\n        Redirecting to <a href=\"http:\/\/localhost\">http:\/\/localhost<\/a>.\n    <\/body>\n<\/html>",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "edit",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/book\/:book\/edit",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/book\/:book\/edit",
+                            "variable": [
+                                {
+                                    "id": "book",
+                                    "key": "book",
+                                    "value": "12",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Show the form for editing the specified resource.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "max-age=0, must-revalidate, no-cache, no-store, private"
+                                },
+                                {
+                                    "key": "location",
+                                    "value": "http:\/\/localhost"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "51"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "pragma",
+                                    "value": "no-cache"
+                                },
+                                {
+                                    "key": "expires",
+                                    "value": "Fri, 01 Jan 1990 00:00:00 GMT"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 302,
+                            "body": "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\" \/>\n        <meta http-equiv=\"refresh\" content=\"0;url='http:\/\/localhost'\" \/>\n\n        <title>Redirecting to http:\/\/localhost<\/title>\n    <\/head>\n    <body>\n        Redirecting to <a href=\"http:\/\/localhost\">http:\/\/localhost<\/a>.\n    <\/body>\n<\/html>",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/book\/:id",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/book\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "6",
+                                    "description": "The ID of the book."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Update the specified resource in storage."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "destroy",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/book\/:id",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/book\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "11",
+                                    "description": "The ID of the book."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Remove the specified resource from storage."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/author",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/author"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "max-age=0, must-revalidate, no-cache, no-store, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "pragma",
+                                    "value": "no-cache"
+                                },
+                                {
+                                    "key": "expires",
+                                    "value": "Fri, 01 Jan 1990 00:00:00 GMT"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\n    \"message\": \"Call to a member function hasAllAccess() on null (View: D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\resources\\\\views\\\\backend\\\\includes\\\\sidebar.blade.php)\",\n    \"exception\": \"Facade\\\\Ignition\\\\Exceptions\\\\ViewException\",\n    \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\resources\\\\views\/backend\/includes\/sidebar.blade.php\",\n    \"line\": 28,\n    \"trace\": [\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Filesystem\\\\Filesystem.php\",\n            \"line\": 107,\n            \"function\": \"require\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Filesystem\\\\Filesystem.php\",\n            \"line\": 108,\n            \"function\": \"Illuminate\\\\Filesystem\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Filesystem\\\\Filesystem\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\Engines\\\\PhpEngine.php\",\n            \"line\": 58,\n            \"function\": \"getRequire\",\n            \"class\": \"Illuminate\\\\Filesystem\\\\Filesystem\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\livewire\\\\livewire\\\\src\\\\ComponentConcerns\\\\RendersLivewireComponents.php\",\n            \"line\": 35,\n            \"function\": \"evaluatePath\",\n            \"class\": \"Illuminate\\\\View\\\\Engines\\\\PhpEngine\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\Engines\\\\CompilerEngine.php\",\n            \"line\": 61,\n            \"function\": \"evaluatePath\",\n            \"class\": \"Livewire\\\\CompilerEngineForIgnition\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\facade\\\\ignition\\\\src\\\\Views\\\\Engines\\\\CompilerEngine.php\",\n            \"line\": 37,\n            \"function\": \"get\",\n            \"class\": \"Illuminate\\\\View\\\\Engines\\\\CompilerEngine\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\View.php\",\n            \"line\": 139,\n            \"function\": \"get\",\n            \"class\": \"Facade\\\\Ignition\\\\Views\\\\Engines\\\\CompilerEngine\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\View.php\",\n            \"line\": 122,\n            \"function\": \"getContents\",\n            \"class\": \"Illuminate\\\\View\\\\View\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\View.php\",\n            \"line\": 91,\n            \"function\": \"renderContents\",\n            \"class\": \"Illuminate\\\\View\\\\View\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\resources\\\\views\/backend\/layouts\/app.blade.php\",\n            \"line\": 22,\n            \"function\": \"render\",\n            \"class\": \"Illuminate\\\\View\\\\View\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Filesystem\\\\Filesystem.php\",\n            \"line\": 107,\n            \"function\": \"require\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Filesystem\\\\Filesystem.php\",\n            \"line\": 108,\n            \"function\": \"Illuminate\\\\Filesystem\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Filesystem\\\\Filesystem\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\Engines\\\\PhpEngine.php\",\n            \"line\": 58,\n            \"function\": \"getRequire\",\n            \"class\": \"Illuminate\\\\Filesystem\\\\Filesystem\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\livewire\\\\livewire\\\\src\\\\ComponentConcerns\\\\RendersLivewireComponents.php\",\n            \"line\": 35,\n            \"function\": \"evaluatePath\",\n            \"class\": \"Illuminate\\\\View\\\\Engines\\\\PhpEngine\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\Engines\\\\CompilerEngine.php\",\n            \"line\": 61,\n            \"function\": \"evaluatePath\",\n            \"class\": \"Livewire\\\\CompilerEngineForIgnition\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\facade\\\\ignition\\\\src\\\\Views\\\\Engines\\\\CompilerEngine.php\",\n            \"line\": 37,\n            \"function\": \"get\",\n            \"class\": \"Illuminate\\\\View\\\\Engines\\\\CompilerEngine\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\View.php\",\n            \"line\": 139,\n            \"function\": \"get\",\n            \"class\": \"Facade\\\\Ignition\\\\Views\\\\Engines\\\\CompilerEngine\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\View.php\",\n            \"line\": 122,\n            \"function\": \"getContents\",\n            \"class\": \"Illuminate\\\\View\\\\View\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\View.php\",\n            \"line\": 91,\n            \"function\": \"renderContents\",\n            \"class\": \"Illuminate\\\\View\\\\View\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\resources\\\\views\/backend\/author\/list.blade.php\",\n            \"line\": 128,\n            \"function\": \"render\",\n            \"class\": \"Illuminate\\\\View\\\\View\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Filesystem\\\\Filesystem.php\",\n            \"line\": 107,\n            \"function\": \"require\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Filesystem\\\\Filesystem.php\",\n            \"line\": 108,\n            \"function\": \"Illuminate\\\\Filesystem\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Filesystem\\\\Filesystem\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\Engines\\\\PhpEngine.php\",\n            \"line\": 58,\n            \"function\": \"getRequire\",\n            \"class\": \"Illuminate\\\\Filesystem\\\\Filesystem\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\livewire\\\\livewire\\\\src\\\\ComponentConcerns\\\\RendersLivewireComponents.php\",\n            \"line\": 35,\n            \"function\": \"evaluatePath\",\n            \"class\": \"Illuminate\\\\View\\\\Engines\\\\PhpEngine\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\Engines\\\\CompilerEngine.php\",\n            \"line\": 61,\n            \"function\": \"evaluatePath\",\n            \"class\": \"Livewire\\\\CompilerEngineForIgnition\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\facade\\\\ignition\\\\src\\\\Views\\\\Engines\\\\CompilerEngine.php\",\n            \"line\": 37,\n            \"function\": \"get\",\n            \"class\": \"Illuminate\\\\View\\\\Engines\\\\CompilerEngine\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\View.php\",\n            \"line\": 139,\n            \"function\": \"get\",\n            \"class\": \"Facade\\\\Ignition\\\\Views\\\\Engines\\\\CompilerEngine\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\View.php\",\n            \"line\": 122,\n            \"function\": \"getContents\",\n            \"class\": \"Illuminate\\\\View\\\\View\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\View.php\",\n            \"line\": 91,\n            \"function\": \"renderContents\",\n            \"class\": \"Illuminate\\\\View\\\\View\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Http\\\\Response.php\",\n            \"line\": 69,\n            \"function\": \"render\",\n            \"class\": \"Illuminate\\\\View\\\\View\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Http\\\\Response.php\",\n            \"line\": 35,\n            \"function\": \"setContent\",\n            \"class\": \"Illuminate\\\\Http\\\\Response\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 794,\n            \"function\": \"__construct\",\n            \"class\": \"Illuminate\\\\Http\\\\Response\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 763,\n            \"function\": \"toResponse\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 695,\n            \"function\": \"prepareResponse\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings.php\",\n            \"line\": 50,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 127,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 103,\n            \"function\": \"handleRequest\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 55,\n            \"function\": \"handleRequestUsingNamedLimiter\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 697,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 672,\n            \"function\": \"runRouteWithinStack\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 636,\n            \"function\": \"runRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 625,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 166,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\livewire\\\\livewire\\\\src\\\\DisableBrowserCache.php\",\n            \"line\": 19,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Livewire\\\\DisableBrowserCache\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\barryvdh\\\\laravel-debugbar\\\\src\\\\Middleware\\\\InjectDebugbar.php\",\n            \"line\": 60,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Barryvdh\\\\Debugbar\\\\Middleware\\\\InjectDebugbar\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\rappasoft\\\\lockout\\\\src\\\\Http\\\\Middleware\\\\CheckForReadOnlyMode.php\",\n            \"line\": 48,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Rappasoft\\\\Lockout\\\\Http\\\\Middleware\\\\CheckForReadOnlyMode\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\fruitcake\\\\laravel-cors\\\\src\\\\HandleCors.php\",\n            \"line\": 52,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fruitcake\\\\Cors\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Http\\\\Middleware\\\\TrustProxies.php\",\n            \"line\": 39,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 141,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 110,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 299,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 287,\n            \"function\": \"callLaravelOrLumenRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 89,\n            \"function\": \"makeApiCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 45,\n            \"function\": \"makeResponseCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 35,\n            \"function\": \"makeResponseCallIfConditionsPass\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 222,\n            \"function\": \"__invoke\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 179,\n            \"function\": \"iterateThroughStrategies\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 116,\n            \"function\": \"fetchResponses\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 117,\n            \"function\": \"processRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 75,\n            \"function\": \"extractEndpointsInfoFromLaravelApp\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 51,\n            \"function\": \"extractEndpointsInfoAndWriteToDisk\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Commands\\\\GenerateDocumentation.php\",\n            \"line\": 48,\n            \"function\": \"get\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 36,\n            \"function\": \"handle\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Commands\\\\GenerateDocumentation\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Util.php\",\n            \"line\": 40,\n            \"function\": \"Illuminate\\\\Container\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 93,\n            \"function\": \"unwrapIfClosure\",\n            \"class\": \"Illuminate\\\\Container\\\\Util\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 37,\n            \"function\": \"callBoundMethod\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Container.php\",\n            \"line\": 651,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 136,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\Container\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\symfony\\\\console\\\\Command\\\\Command.php\",\n            \"line\": 299,\n            \"function\": \"execute\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 121,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Command\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 978,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 295,\n            \"function\": \"doRunCommand\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 167,\n            \"function\": \"doRun\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Application.php\",\n            \"line\": 92,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Console\\\\Kernel.php\",\n            \"line\": 129,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"D:\\\\laragon\\\\www\\\\from BitBucket\\\\_sharecol_laravel_template\\\\artisan\",\n            \"line\": 37,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Console\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show the form for creating a new resource.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/author\/create",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/author\/create"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
+                                    "key": "cache-control",
+                                    "value": "max-age=0, must-revalidate, no-cache, no-store, private"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "pragma",
+                                    "value": "no-cache"
+                                },
+                                {
+                                    "key": "expires",
+                                    "value": "Fri, 01 Jan 1990 00:00:00 GMT"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/author",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/author"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/author\/:id",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/author\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the author."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
+                                    "key": "cache-control",
+                                    "value": "max-age=0, must-revalidate, no-cache, no-store, private"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "56"
+                                },
+                                {
+                                    "key": "pragma",
+                                    "value": "no-cache"
+                                },
+                                {
+                                    "key": "expires",
+                                    "value": "Fri, 01 Jan 1990 00:00:00 GMT"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show the form for editing the specified resource.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/author\/:author\/edit",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/author\/:author\/edit",
+                            "variable": [
+                                {
+                                    "id": "author",
+                                    "key": "author",
+                                    "value": "9",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
+                                    "key": "cache-control",
+                                    "value": "max-age=0, must-revalidate, no-cache, no-store, private"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "55"
+                                },
+                                {
+                                    "key": "pragma",
+                                    "value": "no-cache"
+                                },
+                                {
+                                    "key": "expires",
+                                    "value": "Fri, 01 Jan 1990 00:00:00 GMT"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/author\/:id",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/author\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the author."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/author\/:id",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/author\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "14",
+                                    "description": "The ID of the author."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

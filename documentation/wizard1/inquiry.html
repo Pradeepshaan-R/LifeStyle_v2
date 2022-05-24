@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Wizard-v3</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Font-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <!-- datepicker -->
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
+    <!-- Main Style Css -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+
+<body>
+
+
+    <div class="page-content" style="background-image: url('images/wizard-v3.jpg')">
+        <div class="wizard-v3-content">
+            <div class="wizard-form">
+                <div class="wizard-header">
+                    <h3 class="heading">Cost estimator</h3>
+                    <p>Fill all fields to go next step</p>
+                </div>
+                <form class="form-register" action="#" method="post">
+                    <div id="form-total">
+                        <!-- SECTION 1 -->
+                        <h2>
+                            <span class="step-icon"><i class="zmdi zmdi-account"></i></span>
+                            <span class="step-text">Type</span>
+                        </h2>
+                        <section>
+                            <div class="inner">
+                                <h3>Area information:</h3>
+                                <div class="container">
+                                    <div class="form-row offset-3 ">
+                                        <div class="  col">
+                                            <input type="radio" name="roofno" id="roofCheck" value="roof">
+                                            <label for="radio-choice-1">Roof</label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="radio" name="roofno" id="ceillingCheck" required />
+                                            <label for="radio-choice-2">Ceilling</label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="radio" name="roofno" id="bothCheck" required />
+                                            <label for="radio-choice-2">Both</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+
+                                <aside id="roof_data">
+                                    <div class="form-group row">
+                                        <label for="roof_area" class="col-sm-3 col-form-label text-sm-right">Roof
+                                            Area</label>
+                                        <div class="col-sm-3">
+                                            <input type="number" class="form-control" id="roof_area" name="roof_area"  min="1"/>
+                                        </div>
+                                        <label for="roof_unit"
+                                            class="col-sm-2 col-form-label text-sm-right">Unit</label>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" name='roof_unit' id="roof_unit">
+                                                <option value="sqft">Sq. foot</option>
+                                                <option value="sqm">Sq. Meters</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </aside>
+
+                                <aside id="ceiling_data">
+                                    <div class="form-group row">
+                                        <label for="ceiling_area" class="col-sm-3 col-form-label text-sm-right">Ceiling
+                                            Area</label>
+                                        <div class="col-sm-3">
+                                            <input type="number" class="form-control" id="ceiling_area"
+                                                name="ceiling_area" min="1"/>
+                                        </div>
+                                        <label for="ceiling_unit"
+                                            class="col-sm-2 col-form-label text-sm-right">Unit</label>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" name='ceiling_unit' id="ceiling_unit">
+                                                <option value="sqft">Sq. foot</option>
+                                                <option value="sqm">Sq. Meters</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </aside>
+                            </div>
+                        </section>
+                        <!-- SECTION 2 -->
+                        <h2>
+                            <span class="step-icon"><i class="zmdi zmdi-lock"></i></span>
+                            <span class="step-text">Calculate</span>
+                        </h2>
+                        <section>
+                            <div class="inner">
+
+                                <h3>Required</h3>
+                                <p>Roof: 100 sq. foot</p>
+                                <p>Ceiling: 200 sq. foot</p>
+                                <hr />
+                                <h3>Available Material:</h3>
+
+                                <aside class="alert alert-secondary">
+                                    <div class="container">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="all" name="brand" value="0"
+                                                class="custom-control-input" checked>
+                                            <label class="custom-control-label" for="all">All</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="brand1" name="brand" value="1"
+                                                class="custom-control-input">
+                                            <label class="custom-control-label" for="brand1">Brand 1</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="brand2" name="brand" value="2"
+                                                class="custom-control-input">
+                                            <label class="custom-control-label" for="brand2">Brand 2</label>
+                                        </div>
+                                    </div>
+
+                                </aside>
+                                <div class="form-row">
+                                    <table class="table-responsive-sm table-bordered " width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Type</th>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Variations</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Roof</th>
+                                                <td>Cement weather proof</td>
+                                                <td>6ft Red</td>
+                                                <td>1250</td>
+                                                <td>125,000</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Ceilling</th>
+                                                <td>Eltoro Gypsum</td>
+                                                <td>6ft Red</td>
+                                                <td>1250</td>
+                                                <td>125,000</td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+
+
+
+                            </div>
+
+
+
+
+                        </section>
+                        <!-- SECTION 3 -->
+                        <h2>
+                            <span class="step-icon"><i class="zmdi zmdi-card"></i></span>
+                            <span class="step-text">Register</span>
+                        </h2>
+                        <section>
+                            <div class="inner">
+                                <h3>Contact Details:</h3>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Name </label>
+                                    <input type="text" name="name" id="name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Contact Number</label>
+                                    <input type="text" class="form-control" id="contact_number" name="contact_number"
+                                        required>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- SECTION 4 -->
+                        <h2>
+                            <span class="step-icon"><i class="zmdi zmdi-receipt"></i></span>
+                            <span class="step-text">Estimate</span>
+                        </h2>
+                        <section>
+                            <div class="inner">
+
+
+                                <div class="form-row">
+                                    <table class="table-responsive-sm table-bordered" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Variation</th>
+                                                <th scope="col">Material cost</th>
+                                                <th scope="col">Fixing Cost</th>
+                                                <th scope="col" width="5px">Qty</th>
+                                                <th scope="col">Subtotal</th>
+                                                <th scope="col"> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Rhino cement sheet</td>
+                                                <td>10ft Red</td>
+                                                <td>6,000</td>
+                                                <td>10,000</td>
+                                                <td><input type="number" class="form-input" name="qty1" value="1" min="1"></td>
+                                                <td>20,000</td>
+
+                                                <td><button type="button" class="btn btn-info btn-sm"
+                                                        data-toggle="modal" data-target="#productViewModal">
+                                                        View
+                                                    </button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Eltoro ceiling</td>
+                                                <td>10ft Red</td>
+                                                <td>6,000</td>
+                                                <td>10,000</td>
+                                                <td><input type="number" class="form-input" name="qty1" value="1" min="1"></td>
+                                                <td>20,000</td>
+
+                                                <td><button type="button" class="btn btn-info btn-sm"
+                                                        data-toggle="modal" data-target="#productViewModal">
+                                                        View
+                                                    </button></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <aside class="alert alert-secondary d-flex justify-content-center">
+                                        <h4>Total Cost: Rs. 200,000</h4>
+                                    </aside>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous">
+    </script>
+    <script src="js/jquery.steps.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Modal -->
+    <article class="modal fade" id="productViewModal" tabindex="-1" aria-labelledby="productViewModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Product title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Photo and description here
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </article>
+</body>
+
+</html>

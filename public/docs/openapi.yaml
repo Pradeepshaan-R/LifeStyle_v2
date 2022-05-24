@@ -1,0 +1,1852 @@
+openapi: 3.0.3
+info:
+  title: 'Share Colombo Template'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/register:
+    post:
+      summary: 'Register new user'
+      description: 'A new user can register, but an admin has to authorize'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'App Auth'
+      security: []
+  /api/login:
+    post:
+      summary: 'Login (via API)'
+      description: "once logged in, we need to send the following to client\n1. user record\n2. access token"
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'App Auth'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'The email of the user.'
+                  example: manager@test.com
+                password:
+                  type: string
+                  description: 'The password of the user.'
+                  example: secret
+              required:
+                - email
+                - password
+      security: []
+  /api/serverStatus:
+    get:
+      summary: serverStatus
+      description: "Check this status before calling any api method.\nIf the status is not 'ready', dont proceed with it, show a modal\n\nEnum ('ready','maintenance','updating')"
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - 'App Auth'
+      security: []
+  /api/forgotPasswordEmail:
+    post:
+      summary: forgotPasswordEmail
+      description: 'If email found in the user table, send email with link to reset password'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'App Auth'
+      security: []
+  /api/logout:
+    post:
+      summary: logout
+      description: 'Logout and delete the token'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'App Auth'
+  /api/profile:
+    get:
+      summary: getSettings
+      description: 'Get user settings of ogged in user'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'App Auth'
+    post:
+      summary: setSettings
+      description: 'Update current user settings'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: multipart/form-data
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'App Auth'
+      requestBody:
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the user.'
+                  example: Siripala
+                phone:
+                  type: string
+                  description: 'The phone.'
+                  example: '0112123456'
+                theme:
+                  type: integer
+                  description: 'The theme id.'
+                  example: 1
+                password:
+                  type: string
+                  description: 'The user password.'
+                  example: secret
+                avatar:
+                  type: string
+                  format: binary
+                  description: 'The user avatar.'
+  /api/dashboard:
+    get:
+      summary: Dashboard
+      description: 'Use this for pulldown-to-refresh function of the app dashbaord'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'App Auth'
+  /api/book:
+    get:
+      summary: index
+      description: 'Display a listing of the resource.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        302:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\" />\n        <meta http-equiv=\"refresh\" content=\"0;url='http://localhost'\" />\n\n        <title>Redirecting to http://localhost</title>\n    </head>\n    <body>\n        Redirecting to <a href=\"http://localhost\">http://localhost</a>.\n    </body>\n</html>"
+      tags:
+        - Books
+    post:
+      summary: store
+      description: "Store a newly created resource in storage.\nUses transactions to prevent partial data updates"
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Books
+  /api/book/create:
+    get:
+      summary: create
+      description: 'Show the form for creating a new resource.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        302:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\" />\n        <meta http-equiv=\"refresh\" content=\"0;url='http://localhost'\" />\n\n        <title>Redirecting to http://localhost</title>\n    </head>\n    <body>\n        Redirecting to <a href=\"http://localhost\">http://localhost</a>.\n    </body>\n</html>"
+      tags:
+        - Books
+  '/api/book/{id}':
+    get:
+      summary: show
+      description: 'Display the specified resource.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        302:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\" />\n        <meta http-equiv=\"refresh\" content=\"0;url='http://localhost'\" />\n\n        <title>Redirecting to http://localhost</title>\n    </head>\n    <body>\n        Redirecting to <a href=\"http://localhost\">http://localhost</a>.\n    </body>\n</html>"
+      tags:
+        - Books
+    put:
+      summary: update
+      description: 'Update the specified resource in storage.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Books
+    delete:
+      summary: destroy
+      description: 'Remove the specified resource from storage.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Books
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'id of the book to view.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/book/{book}/edit':
+    get:
+      summary: edit
+      description: 'Show the form for editing the specified resource.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        302:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\" />\n        <meta http-equiv=\"refresh\" content=\"0;url='http://localhost'\" />\n\n        <title>Redirecting to http://localhost</title>\n    </head>\n    <body>\n        Redirecting to <a href=\"http://localhost\">http://localhost</a>.\n    </body>\n</html>"
+      tags:
+        - Books
+      security: []
+    parameters:
+      -
+        in: path
+        name: book
+        description: ''
+        example: 12
+        required: true
+        schema:
+          type: integer
+  /api/author:
+    get:
+      summary: 'Display a listing of the resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Call to a member function hasAllAccess() on null (View: D:\laragon\www\from BitBucket\_sharecol_laravel_template\resources\views\backend\includes\sidebar.blade.php)'
+                  exception: Facade\Ignition\Exceptions\ViewException
+                  file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\resources\views/backend/includes/sidebar.blade.php'
+                  line: 28
+                  trace:
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php'
+                      line: 107
+                      function: require
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php'
+                      line: 108
+                      function: 'Illuminate\Filesystem\{closure}'
+                      class: Illuminate\Filesystem\Filesystem
+                      type: '::'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php'
+                      line: 58
+                      function: getRequire
+                      class: Illuminate\Filesystem\Filesystem
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\livewire\livewire\src\ComponentConcerns\RendersLivewireComponents.php'
+                      line: 35
+                      function: evaluatePath
+                      class: Illuminate\View\Engines\PhpEngine
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php'
+                      line: 61
+                      function: evaluatePath
+                      class: Livewire\CompilerEngineForIgnition
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\facade\ignition\src\Views\Engines\CompilerEngine.php'
+                      line: 37
+                      function: get
+                      class: Illuminate\View\Engines\CompilerEngine
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                      line: 139
+                      function: get
+                      class: Facade\Ignition\Views\Engines\CompilerEngine
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                      line: 122
+                      function: getContents
+                      class: Illuminate\View\View
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                      line: 91
+                      function: renderContents
+                      class: Illuminate\View\View
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\resources\views/backend/layouts/app.blade.php'
+                      line: 22
+                      function: render
+                      class: Illuminate\View\View
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php'
+                      line: 107
+                      function: require
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php'
+                      line: 108
+                      function: 'Illuminate\Filesystem\{closure}'
+                      class: Illuminate\Filesystem\Filesystem
+                      type: '::'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php'
+                      line: 58
+                      function: getRequire
+                      class: Illuminate\Filesystem\Filesystem
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\livewire\livewire\src\ComponentConcerns\RendersLivewireComponents.php'
+                      line: 35
+                      function: evaluatePath
+                      class: Illuminate\View\Engines\PhpEngine
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php'
+                      line: 61
+                      function: evaluatePath
+                      class: Livewire\CompilerEngineForIgnition
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\facade\ignition\src\Views\Engines\CompilerEngine.php'
+                      line: 37
+                      function: get
+                      class: Illuminate\View\Engines\CompilerEngine
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                      line: 139
+                      function: get
+                      class: Facade\Ignition\Views\Engines\CompilerEngine
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                      line: 122
+                      function: getContents
+                      class: Illuminate\View\View
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                      line: 91
+                      function: renderContents
+                      class: Illuminate\View\View
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\resources\views/backend/author/list.blade.php'
+                      line: 128
+                      function: render
+                      class: Illuminate\View\View
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php'
+                      line: 107
+                      function: require
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php'
+                      line: 108
+                      function: 'Illuminate\Filesystem\{closure}'
+                      class: Illuminate\Filesystem\Filesystem
+                      type: '::'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php'
+                      line: 58
+                      function: getRequire
+                      class: Illuminate\Filesystem\Filesystem
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\livewire\livewire\src\ComponentConcerns\RendersLivewireComponents.php'
+                      line: 35
+                      function: evaluatePath
+                      class: Illuminate\View\Engines\PhpEngine
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php'
+                      line: 61
+                      function: evaluatePath
+                      class: Livewire\CompilerEngineForIgnition
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\facade\ignition\src\Views\Engines\CompilerEngine.php'
+                      line: 37
+                      function: get
+                      class: Illuminate\View\Engines\CompilerEngine
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                      line: 139
+                      function: get
+                      class: Facade\Ignition\Views\Engines\CompilerEngine
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                      line: 122
+                      function: getContents
+                      class: Illuminate\View\View
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                      line: 91
+                      function: renderContents
+                      class: Illuminate\View\View
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Http\Response.php'
+                      line: 69
+                      function: render
+                      class: Illuminate\View\View
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Http\Response.php'
+                      line: 35
+                      function: setContent
+                      class: Illuminate\Http\Response
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 794
+                      function: __construct
+                      class: Illuminate\Http\Response
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 763
+                      function: toResponse
+                      class: Illuminate\Routing\Router
+                      type: '::'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 695
+                      function: prepareResponse
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 128
+                      function: 'Illuminate\Routing\{closure}'
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                      line: 50
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Routing\Middleware\SubstituteBindings
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 127
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 103
+                      function: handleRequest
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 55
+                      function: handleRequestUsingNamedLimiter
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 103
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 697
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 672
+                      function: runRouteWithinStack
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 636
+                      function: runRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 625
+                      function: dispatchToRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 166
+                      function: dispatch
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 128
+                      function: 'Illuminate\Foundation\Http\{closure}'
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\livewire\livewire\src\DisableBrowserCache.php'
+                      line: 19
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Livewire\DisableBrowserCache
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\barryvdh\laravel-debugbar\src\Middleware\InjectDebugbar.php'
+                      line: 60
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Barryvdh\Debugbar\Middleware\InjectDebugbar
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\rappasoft\lockout\src\Http\Middleware\CheckForReadOnlyMode.php'
+                      line: 48
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Rappasoft\Lockout\Http\Middleware\CheckForReadOnlyMode
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                      line: 31
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                      line: 40
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                      line: 27
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                      line: 86
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\fruitcake\laravel-cors\src\HandleCors.php'
+                      line: 52
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Fruitcake\Cors\HandleCors
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                      line: 39
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Http\Middleware\TrustProxies
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 103
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 141
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 110
+                      function: sendRequestThroughRouter
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 299
+                      function: handle
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 287
+                      function: callLaravelOrLumenRoute
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 89
+                      function: makeApiCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 45
+                      function: makeResponseCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 35
+                      function: makeResponseCallIfConditionsPass
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 222
+                      function: __invoke
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 179
+                      function: iterateThroughStrategies
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 116
+                      function: fetchResponses
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 117
+                      function: processRoute
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 75
+                      function: extractEndpointsInfoFromLaravelApp
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 51
+                      function: extractEndpointsInfoAndWriteToDisk
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                      line: 48
+                      function: get
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 36
+                      function: handle
+                      class: Knuckles\Scribe\Commands\GenerateDocumentation
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                      line: 40
+                      function: 'Illuminate\Container\{closure}'
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 93
+                      function: unwrapIfClosure
+                      class: Illuminate\Container\Util
+                      type: '::'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 37
+                      function: callBoundMethod
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                      line: 651
+                      function: call
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 136
+                      function: call
+                      class: Illuminate\Container\Container
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\symfony\console\Command\Command.php'
+                      line: 299
+                      function: execute
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 121
+                      function: run
+                      class: Symfony\Component\Console\Command\Command
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\symfony\console\Application.php'
+                      line: 978
+                      function: run
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\symfony\console\Application.php'
+                      line: 295
+                      function: doRunCommand
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\symfony\console\Application.php'
+                      line: 167
+                      function: doRun
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Console\Application.php'
+                      line: 92
+                      function: run
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                      line: 129
+                      function: run
+                      class: Illuminate\Console\Application
+                      type: '->'
+                    -
+                      file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\artisan'
+                      line: 37
+                      function: handle
+                      class: Illuminate\Foundation\Console\Kernel
+                      type: '->'
+                properties:
+                  message:
+                    type: string
+                    example: 'Call to a member function hasAllAccess() on null (View: D:\laragon\www\from BitBucket\_sharecol_laravel_template\resources\views\backend\includes\sidebar.blade.php)'
+                  exception:
+                    type: string
+                    example: Facade\Ignition\Exceptions\ViewException
+                  file:
+                    type: string
+                    example: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\resources\views/backend/includes/sidebar.blade.php'
+                  line:
+                    type: integer
+                    example: 28
+                  trace:
+                    type: array
+                    example:
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php'
+                        line: 107
+                        function: require
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php'
+                        line: 108
+                        function: 'Illuminate\Filesystem\{closure}'
+                        class: Illuminate\Filesystem\Filesystem
+                        type: '::'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php'
+                        line: 58
+                        function: getRequire
+                        class: Illuminate\Filesystem\Filesystem
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\livewire\livewire\src\ComponentConcerns\RendersLivewireComponents.php'
+                        line: 35
+                        function: evaluatePath
+                        class: Illuminate\View\Engines\PhpEngine
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php'
+                        line: 61
+                        function: evaluatePath
+                        class: Livewire\CompilerEngineForIgnition
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\facade\ignition\src\Views\Engines\CompilerEngine.php'
+                        line: 37
+                        function: get
+                        class: Illuminate\View\Engines\CompilerEngine
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                        line: 139
+                        function: get
+                        class: Facade\Ignition\Views\Engines\CompilerEngine
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                        line: 122
+                        function: getContents
+                        class: Illuminate\View\View
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                        line: 91
+                        function: renderContents
+                        class: Illuminate\View\View
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\resources\views/backend/layouts/app.blade.php'
+                        line: 22
+                        function: render
+                        class: Illuminate\View\View
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php'
+                        line: 107
+                        function: require
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php'
+                        line: 108
+                        function: 'Illuminate\Filesystem\{closure}'
+                        class: Illuminate\Filesystem\Filesystem
+                        type: '::'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php'
+                        line: 58
+                        function: getRequire
+                        class: Illuminate\Filesystem\Filesystem
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\livewire\livewire\src\ComponentConcerns\RendersLivewireComponents.php'
+                        line: 35
+                        function: evaluatePath
+                        class: Illuminate\View\Engines\PhpEngine
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php'
+                        line: 61
+                        function: evaluatePath
+                        class: Livewire\CompilerEngineForIgnition
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\facade\ignition\src\Views\Engines\CompilerEngine.php'
+                        line: 37
+                        function: get
+                        class: Illuminate\View\Engines\CompilerEngine
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                        line: 139
+                        function: get
+                        class: Facade\Ignition\Views\Engines\CompilerEngine
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                        line: 122
+                        function: getContents
+                        class: Illuminate\View\View
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                        line: 91
+                        function: renderContents
+                        class: Illuminate\View\View
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\resources\views/backend/author/list.blade.php'
+                        line: 128
+                        function: render
+                        class: Illuminate\View\View
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php'
+                        line: 107
+                        function: require
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php'
+                        line: 108
+                        function: 'Illuminate\Filesystem\{closure}'
+                        class: Illuminate\Filesystem\Filesystem
+                        type: '::'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php'
+                        line: 58
+                        function: getRequire
+                        class: Illuminate\Filesystem\Filesystem
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\livewire\livewire\src\ComponentConcerns\RendersLivewireComponents.php'
+                        line: 35
+                        function: evaluatePath
+                        class: Illuminate\View\Engines\PhpEngine
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php'
+                        line: 61
+                        function: evaluatePath
+                        class: Livewire\CompilerEngineForIgnition
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\facade\ignition\src\Views\Engines\CompilerEngine.php'
+                        line: 37
+                        function: get
+                        class: Illuminate\View\Engines\CompilerEngine
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                        line: 139
+                        function: get
+                        class: Facade\Ignition\Views\Engines\CompilerEngine
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                        line: 122
+                        function: getContents
+                        class: Illuminate\View\View
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\View\View.php'
+                        line: 91
+                        function: renderContents
+                        class: Illuminate\View\View
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Http\Response.php'
+                        line: 69
+                        function: render
+                        class: Illuminate\View\View
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Http\Response.php'
+                        line: 35
+                        function: setContent
+                        class: Illuminate\Http\Response
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 794
+                        function: __construct
+                        class: Illuminate\Http\Response
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 763
+                        function: toResponse
+                        class: Illuminate\Routing\Router
+                        type: '::'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 695
+                        function: prepareResponse
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 128
+                        function: 'Illuminate\Routing\{closure}'
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                        line: 50
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Routing\Middleware\SubstituteBindings
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 127
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 103
+                        function: handleRequest
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 55
+                        function: handleRequestUsingNamedLimiter
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 103
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 697
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 672
+                        function: runRouteWithinStack
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 636
+                        function: runRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 625
+                        function: dispatchToRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 166
+                        function: dispatch
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 128
+                        function: 'Illuminate\Foundation\Http\{closure}'
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\livewire\livewire\src\DisableBrowserCache.php'
+                        line: 19
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Livewire\DisableBrowserCache
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\barryvdh\laravel-debugbar\src\Middleware\InjectDebugbar.php'
+                        line: 60
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Barryvdh\Debugbar\Middleware\InjectDebugbar
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\rappasoft\lockout\src\Http\Middleware\CheckForReadOnlyMode.php'
+                        line: 48
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Rappasoft\Lockout\Http\Middleware\CheckForReadOnlyMode
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                        line: 31
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                        line: 40
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                        line: 27
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                        line: 86
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\fruitcake\laravel-cors\src\HandleCors.php'
+                        line: 52
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Fruitcake\Cors\HandleCors
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                        line: 39
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Http\Middleware\TrustProxies
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 103
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 141
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 110
+                        function: sendRequestThroughRouter
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 299
+                        function: handle
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 287
+                        function: callLaravelOrLumenRoute
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 89
+                        function: makeApiCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 45
+                        function: makeResponseCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 35
+                        function: makeResponseCallIfConditionsPass
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 222
+                        function: __invoke
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 179
+                        function: iterateThroughStrategies
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 116
+                        function: fetchResponses
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 117
+                        function: processRoute
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 75
+                        function: extractEndpointsInfoFromLaravelApp
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 51
+                        function: extractEndpointsInfoAndWriteToDisk
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                        line: 48
+                        function: get
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 36
+                        function: handle
+                        class: Knuckles\Scribe\Commands\GenerateDocumentation
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                        line: 40
+                        function: 'Illuminate\Container\{closure}'
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 93
+                        function: unwrapIfClosure
+                        class: Illuminate\Container\Util
+                        type: '::'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 37
+                        function: callBoundMethod
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                        line: 651
+                        function: call
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 136
+                        function: call
+                        class: Illuminate\Container\Container
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\symfony\console\Command\Command.php'
+                        line: 299
+                        function: execute
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 121
+                        function: run
+                        class: Symfony\Component\Console\Command\Command
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\symfony\console\Application.php'
+                        line: 978
+                        function: run
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\symfony\console\Application.php'
+                        line: 295
+                        function: doRunCommand
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\symfony\console\Application.php'
+                        line: 167
+                        function: doRun
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Console\Application.php'
+                        line: 92
+                        function: run
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                        line: 129
+                        function: run
+                        class: Illuminate\Console\Application
+                        type: '->'
+                      -
+                        file: 'D:\laragon\www\from BitBucket\_sharecol_laravel_template\artisan'
+                        line: 37
+                        function: handle
+                        class: Illuminate\Foundation\Console\Kernel
+                        type: '->'
+                    items:
+                      type: object
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/author/create:
+    get:
+      summary: 'Show the form for creating a new resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
+  '/api/author/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the author.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  '/api/author/{author}/edit':
+    get:
+      summary: 'Show the form for editing the specified resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: author
+        description: ''
+        example: 9
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: 'App Auth'
+    description: "\nAll auth related methods for Apps via API"
+  -
+    name: Books
+    description: "\nAPIs for managing books"
+  -
+    name: Endpoints
+    description: ''

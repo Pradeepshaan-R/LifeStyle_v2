@@ -1,0 +1,6 @@
+qty,status,isbn,title,author_id
+100,Lended,1616711906,title 1,1
+101,Lended,,title 2,2
+102,Damaged,1687891944,,4
+103,Damaged,1723481963,title 4,3
+104,Damaged,1759071982,title 5,6
