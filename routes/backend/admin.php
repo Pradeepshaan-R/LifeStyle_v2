@@ -58,4 +58,6 @@ Route::resource('stock', StockController::class);
 // Route::resource('show_product/{id}',[ ProductController::class ,'show'])->name('show_product');
 Route::resource('variation', VariationController::class);
 Route::resource('variation_type', VariationTypeController::class);
+
+Route::get('customer/register', [CustomerController::class, 'register'])->name('customer.register');
 Route::resource('customer', CustomerController::class);

@@ -4,7 +4,7 @@
     </button>
 
     <a class="c-header-brand d-lg-none" href="#">
-        <img src="{{url('img/brand/logo_max.png')}}" alt="Logo Max width version" />
+        <h3>LifeStyle MarketPlace</h3>
     </a>
 
     <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">

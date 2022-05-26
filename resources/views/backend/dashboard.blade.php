@@ -18,10 +18,6 @@
 </x-backend.card>
 
 <x-backend.card>
-    <x-slot name="header">
-        @lang('Welcome :Name', ['name' => $logged_in_user->name]) - info box 2
-    </x-slot>
-
     <x-slot name="body">
         @include('backend.dashboard.infobox2')
     </x-slot>

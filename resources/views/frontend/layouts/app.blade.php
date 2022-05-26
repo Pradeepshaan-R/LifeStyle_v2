@@ -27,8 +27,8 @@
     {{-- @include('includes.partials.announcements') --}}
 
     <div id="app">
-        {{-- @include('frontend.includes.nav') --}}
-        @include('includes.partials.messages')
+        {{-- @include('frontend.includes.nav')
+        @include('includes.partials.messages') --}}
 
         <main>
             @yield('content')
@@ -37,11 +37,11 @@
     <!--app-->
 
     @stack('before-scripts')
+    
     <script src="{{ asset(mix('js/manifest.js')) }}"></script>
     <script src="{{ asset(mix('js/vendor.js')) }}"></script>
     <script src="{{ asset(mix('js/frontend.js')) }}"></script>
     <livewire:scripts />
-
 
     @stack('after-scripts')
 </body>

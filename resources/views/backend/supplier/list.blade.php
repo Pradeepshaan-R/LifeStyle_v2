@@ -30,6 +30,8 @@
                 <aside class="col-6">
                     @can('PRODUCT_CREATE')
                         <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                            <a href="#" class="d-print-none btn btn-secondary ml-1" data-toggle="tooltip" title="Print"
+                                onclick="window.print()"><i class="fas fa-print"></i></a>
                             <a href="{{ route('admin.supplier.create') }}" class="btn btn-success ml-1" data-toggle="tooltip"
                                 title="Add New"><i class="fas fa-plus-circle"></i></a>
                         </div>

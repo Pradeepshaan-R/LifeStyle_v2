@@ -25,14 +25,14 @@
 <body>
     @include('includes.partials.read-only')
     @include('includes.partials.logged-in-as')
-    @include('includes.partials.announcements')
+    {{-- @include('includes.partials.announcements') --}}
 
     <div id="app" class="flex-center position-ref full-height">
         <nav class="navbar navbar-expand-lg navbar-light px-0 py-3">
             <div class="container-xl max-w-screen-xl">
                 <!-- Logo -->
-                <h3><a class="navbar-brand" href="{{url('/')}}">
-                        <img src="{{url('/img/brand/logo_min.png')}}" alt="Logo" class="m-2"> {{config('app.name')}}
+                <h3><a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name') }}
                     </a></h3>
                 <!-- Navbar toggle -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -44,13 +44,13 @@
                     <!-- Nav -->
                     <ul class="navbar-nav mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/')}}">Home</a>
+                            <a class="nav-link" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Product</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/pages/features')}}">Features</a>
+                            <a class="nav-link" href="{{ url('/pages/features') }}">Features</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Pricing</a>
@@ -58,23 +58,24 @@
                     </ul>
                     <!-- Right navigation -->
                     @auth
-                    @if ($logged_in_user->isUser())
-                    <a class="btn btn-sm btn-neutral w-full w-lg-auto"
-                        href="{{ route('frontend.user.dashboard') }}">@lang('Dashboard')</a> &nbsp;
-                    @endif
+                        @if ($logged_in_user->isUser())
+                            <a class="btn btn-sm btn-neutral w-full w-lg-auto"
+                                href="{{ route('frontend.user.dashboard') }}">@lang('Dashboard')</a> &nbsp;
+                        @endif
 
-                    <a class="btn btn-sm btn-neutral w-full w-lg-auto"
-                        href="{{ route('frontend.user.account') }}">@lang('Account')</a>
-                    @else
-                    <div class="navbar-nav ms-lg-4">
                         <a class="btn btn-sm btn-neutral w-full w-lg-auto"
-                            href="{{ route('frontend.auth.login') }}">@lang('Login')</a>
-                    </div>
-                    @if (config('boilerplate.access.user.registration'))
-                    <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
-                        <a class="nav-item nav-link" href="{{ route('frontend.auth.register') }}">@lang('Register')</a>
-                    </div>
-                    @endif
+                            href="{{ route('frontend.user.account') }}">@lang('Account')</a>
+                    @else
+                        <div class="navbar-nav ms-lg-4">
+                            <a class="btn btn-sm btn-neutral w-full w-lg-auto"
+                                href="{{ route('frontend.auth.login') }}">@lang('Login')</a>
+                        </div>
+                        @if (config('boilerplate.access.user.registration'))
+                            <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
+                                <a class="nav-item nav-link"
+                                    href="{{ route('frontend.auth.register') }}">@lang('Register')</a>
+                            </div>
+                        @endif
                     @endauth
                     <!-- Action -->
                 </div>

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Domains\Auth\Models\User;
-use App\Models\Category;
-use App\Models\Product;
 use App\Models\Stock;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\Customer;
 use App\Models\Supplier;
+use App\Domains\Auth\Models\User;
 
 /**
  * Class DashboardController.
@@ -20,6 +21,7 @@ class DashboardController
     {
         $users = User::get();
         $suppliers = Supplier::get();
+        $customers = Customer::get();
 
         $categories = Category::get();
         $categoryActive = Category::where('status', 'Active')->get();
@@ -56,6 +58,7 @@ class DashboardController
                 'categories' => $categories,
                 'categoryActivePercentage' => $categoryActivePercentage,
                 'stocks' => $stocks,
+                'customers' => $customers,
             ]);
     }
 }

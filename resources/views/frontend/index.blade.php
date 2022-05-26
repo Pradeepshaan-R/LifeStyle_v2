@@ -6,7 +6,7 @@
             <div class="col-lg-6 order-md-0">
                 <!-- Surtitle -->
                 <h5 class="h5 mb-5 text-uppercase text-warning mb-5">
-                    Roofing solutions
+                    LifeStyle MarketPlace
                 </h5>
                 <!-- Heading -->
                 <h1 class="ls-tight font-bolder display-3 mb-5">
@@ -21,9 +21,9 @@
                     <a href="{{url('/inquiry')}}" class="btn btn-lg btn-primary shadow-sm mx-2 px-lg-8">
                         Get started
                     </a>
-                    <a href="{{url('/pages/howto')}}" class="btn btn-lg btn-neutral mx-2 px-lg-8">
+                    {{-- <a href="{{url('/pages/howto')}}" class="btn btn-lg btn-neutral mx-2 px-lg-8">
                         Learn more
-                    </a>
+                    </a> --}}
                 </div>
             </div>
 

@@ -30,6 +30,8 @@
                 <aside class="col-6">
                     @can('PRODUCT_CREATE')
                         <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                            <a href="#" class="d-print-none btn btn-secondary ml-1" data-toggle="tooltip" title="Print"
+                                onclick="window.print()"><i class="fas fa-print"></i></a>
                             <a href="{{ route('admin.stock.create') }}" class="btn btn-success ml-1" data-toggle="tooltip"
                                 title="Add New"><i class="fas fa-plus-circle"></i></a>
                         </div>
@@ -74,9 +76,9 @@
                                     <tr>
                                         <td>{{ $one->title }}</td>
                                         <td>{{ $one->user_name }}</td>
-                                        <td>{{ number_format($one->quantity)}}</td>
-                                         <td>{{ substr($one->registration_date, 0, 10) }}</td>
-                                         <td>{{ substr($one->expiry_date, 0, 10) }}</td>
+                                        <td>{{ number_format($one->quantity) }}</td>
+                                        <td>{{ substr($one->registration_date, 0, 10) }}</td>
+                                        <td>{{ substr($one->expiry_date, 0, 10) }}</td>
                                         <td class="text-right">
                                             <div class="btn-group" role="group" aria-label="user_actions">
                                                 <a href="{{ url('admin/stock') }}/{{ $one->id }}"

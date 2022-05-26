@@ -6,8 +6,8 @@
     <a href="{{url('/terms')}}">Terms & Conditions</a> •
     <a href="{{url('/privacy')}}">Privacy Policy</a>
 </div>
-<p class="flex-center text-center text-sm">2021 © Crafted with &nbsp; <i class="fa fa-heart text-danger"></i> &nbsp; by
-    Share Colombo.</p>
+<p class="flex-center text-center text-sm">2022 © Crafted with &nbsp; <i class="fa fa-heart text-danger"></i> &nbsp; by
+    Malisha Creancy.</p>
 
 @stack('before-scripts')
 <script src="{{ asset(mix('js/manifest.js')) }}"></script>

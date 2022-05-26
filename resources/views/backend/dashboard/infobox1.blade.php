@@ -75,13 +75,13 @@
     <!-- fix for small devices only -->
     <div class="clearfix visible-sm-block"></div>
 
-    <a class="col-md-6 col-lg-3 text-dark" href="{{ route('admin.user_extra.index') }}" style="text-decoration:none">
+    <a class="col-md-6 col-lg-3 text-dark" href="{{ route('admin.customer.index') }}" style="text-decoration:none">
         <div class="info-box">
             <span class="info-box-icon bg-warning"><i class="fas fa-hourglass-half"></i></span>
 
             <div class="info-box-content">
                 <span class="info-box-text">Customers</span>
-                <span class="info-box-number">300</span>
+                <span class="info-box-number">{{ count($customers) }}</span>
             </div>
         </div>
         <!-- /.info-box -->

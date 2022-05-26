@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Exception;
+use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
 class CustomerController extends Controller
 {
@@ -15,9 +15,19 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('frontend.pages.customer');
+        $name = $request->name;
+        $customer_list = Customer::select('*');
+
+        if ($name) {
+            $customer_list = $customer_list->where("first_name", "LIKE", '%' . $name . '%')
+                ->orWhere("last_name", "LIKE", '%' . $name . '%');
+        }
+
+        $customer_list = $customer_list->paginate(config('app.pagination'));
+
+        return view('backend.customer.list', ['customer_list' => $customer_list, 'name' => $name]);
     }
 
     /**
@@ -71,7 +81,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return view('backend.customer.view', ['customer' => $customer]);
     }
 
     /**
@@ -105,11 +115,20 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        try {
+            $customer->delete();
+
+            $this->message = "Delete successful";
+        } catch (Exception $ex) {
+            $this->message = "Delete unsuccessful. You may not be the owner.";
+            $this->code = 401;
+        }
+        return redirect('admin/customer')->withFlashInfo($this->message);
+
     }
 
-    public function registerCustomer()
+    public function register(Request $request)
     {
-        dd("ok");
+        return view('frontend.pages.customer');
     }
 }

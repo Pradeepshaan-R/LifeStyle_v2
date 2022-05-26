@@ -42,7 +42,7 @@ class InquiryController extends Controller
         $product = Product::select('*')->get();
         $categoryTop = Category::select('*')->where('id', '<', '8')->get();
         $categoryBottom = Category::select('*')->where('id', '>=', '8')->get();
-
+        
         return view('frontend.pages.inquiry',['product' => $product, 'categoryTop' => $categoryTop, 'categoryBottom' => $categoryBottom]);
     }
 

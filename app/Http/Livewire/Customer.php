@@ -17,22 +17,12 @@ class Customer extends Component
 
     public function mount()
     {
-        $this->first_name = "Hello";
+        // dd('ok');
     }
 
-    public function register()
+    public function cool()
     {
-        dd("p");
-    }
-
-    public function updatedRegisterBack($a)
-    {
-        dd($a);
-    }
-
-    public function accountNext()
-    {
-        dd("ok");
+        dd('cool');
     }
 
     public function render()

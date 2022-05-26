@@ -25,8 +25,9 @@
 
 
 @section('content')
-    {{-- <livewire:inquiry-create /> --}}
-
+    {{-- <livewire:customer /> --}}
+    {{-- <livewire:shop /> --}}
+    {{-- @livewire('shop') --}}
     <header class="section-header top-panel">
         <section class="header-main border-bottom">
             <div class="container">
@@ -40,9 +41,9 @@
                         <form action="#" class="search">
                             <div class="input-group w-100 pt-3 text-white">
                                 <input type="text" class="form-control text-light" style="background: transparent"
-                                    placeholder="Search">
+                                    placeholder="Search" wire:model="search">
                                 <div class="input-group-append">
-                                    <button class="btn btn-info" type="submit">
+                                    <button class="btn btn-info" wire:click="filter" type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
@@ -62,9 +63,9 @@
                                 <div class="text">
                                     <span class="text-light">Welcome!</span>
                                     <div class="text-light">
-                                        {{-- <li><a href="{{route('frontend.auth.login')}}">Sign in</a></li> --}}
                                         <a href="#" class="text-white">Sign in</a> |
-                                        <a href="{{url('admin/customer')}}" class="text-white"> Register</a>
+                                        <a href="{{ url('admin/customer/register') }}" class="text-white">
+                                            Register</a>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +79,6 @@
 
         <nav class="navbar navbar-main navbar-expand-lg navbar-dark border-bottom">
             <div class="container">
-
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -96,7 +96,6 @@
                 </div> <!-- collapse .// -->
             </div> <!-- container .// -->
         </nav>
-
     </header> <!-- section-header.// -->
 
 
@@ -134,9 +133,7 @@
     <!-- ========================= SECTION  ========================= -->
     <section class="section-name padding-y-sm">
         <div class="container">
-
             <header class="section-heading">
-                {{-- <a href="#" class="btn btn-outline-primary float-end">See all</a> --}}
                 <h3 class="section-title">Products</h3>
             </header>
 
@@ -147,10 +144,10 @@
                         <div href="#" class="card card-product-grid">
                             <a href="#" class="img-wrap"> <img
                                     src="{{ asset('storage/uploads/') . '/' . $one->filename }}"> </a>
-                            <figcaption class="info-wrap">
+                            <div class="info-wrap">
                                 <a href="#" class="title">{{ $one->title }}</a>
                                 <div class="price mt-1">Rs. {{ number_format($one->price, 2) }}</div>
-                            </figcaption>
+                            </div>
                         </div>
                     </div>
                 @endforeach

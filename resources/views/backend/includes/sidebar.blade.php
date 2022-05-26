@@ -61,7 +61,7 @@
                 icon="c-sidebar-nav-icon cil-people" text="User Management" />
         </li>
         <li class="c-sidebar-nav-item">
-            <x-utils.link class="c-sidebar-nav-link" :href="route('admin.book.index')" :active="activeClass(Route::is('admin.book.*'), 'c-active')"
+            <x-utils.link class="c-sidebar-nav-link" :href="route('admin.customer.index')" :active="activeClass(Route::is('admin.customer.*'), 'c-active')"
                 icon="c-sidebar-nav-icon cil-book" text="Customer Management" />
         </li>
         <li class="c-sidebar-nav-item">
