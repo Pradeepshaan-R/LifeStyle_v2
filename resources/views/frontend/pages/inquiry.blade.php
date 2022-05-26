@@ -122,7 +122,7 @@
                 </aside> <!-- col.// -->
                 <div class="col-md-9">
                     <article class="banner-wrap">
-                        <img src="assets/images/2.jpg" class="w-100 rounded">
+                        <img src="assets/images/6.jpg" style="height: 400px" class="w-100 rounded">
                     </article>
                 </div> <!-- col.// -->
             </div> <!-- row.// -->
