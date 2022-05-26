@@ -50,7 +50,7 @@
                         value="{{$name}}" />
                 </div>
 
-                <div class="col-3">
+                {{-- <div class="col-3">
                     <select class="form-control" name='status' id="status">
                         <option value="-1">All</option>
                         @foreach( App\Models\UserExtra::getEnum('status') as $status)
@@ -67,7 +67,7 @@
                         <option value="{{ $role->name }}">{{ $role->name }}</option>
                         @endforeach
                     </select>
-                </div>
+                </div> --}}
 
                 <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
             </aside>

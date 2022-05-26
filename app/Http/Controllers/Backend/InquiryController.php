@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Inquiry;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class InquiryController extends Controller
 {
@@ -38,8 +39,11 @@ class InquiryController extends Controller
 
     public function create()
     {
-        $product=Product::select('*')->get();
-        return view('frontend.pages.inquiry',compact('product'));
+        $product = Product::select('*')->get();
+        $categoryTop = Category::select('*')->where('id', '<', '8')->get();
+        $categoryBottom = Category::select('*')->where('id', '>=', '8')->get();
+
+        return view('frontend.pages.inquiry',['product' => $product, 'categoryTop' => $categoryTop, 'categoryBottom' => $categoryBottom]);
     }
 
     /**
@@ -50,8 +54,6 @@ class InquiryController extends Controller
      */
     public function store(Request $request)
     {
-dd($request->all);
-
         $validatedData = $this->validate($request, Inquiry::$rules);
         DB::beginTransaction();
         try {

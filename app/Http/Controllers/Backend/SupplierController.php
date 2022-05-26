@@ -120,6 +120,7 @@ class SupplierController extends Controller
             $this->message = 'Update Successful';
         } catch (Exception $ex) {
             DB::rollBack();
+            dd($ex);
             $this->message = 'Update Unsuccessful';
         }
         return redirect('admin/supplier')->withFlashSuccess($this->message);

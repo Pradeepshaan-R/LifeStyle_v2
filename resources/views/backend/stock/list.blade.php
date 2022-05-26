@@ -49,13 +49,9 @@
                         <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
                     </aside>
                 </x-forms.get> --}}
-                <!--form-->
-                <!--btn-toolbar-->
             </section>
         </div>
-        <!--card-body-->
     </div>
-    <!--card-->
 
     <x-backend.card>
         <x-slot name="body">
@@ -65,25 +61,31 @@
                         <table class="table table-striped table-hover" id="dtable">
                             <thead>
                                 <tr>
+                                    <th>Product</th>
+                                    <th>Suplier</th>
                                     <th>Quantity</th>
                                     <th>Reg Date</th>
                                     <th>Exp. Date</th>
-                                    <th>Description</th>
-                                    <th>Suplier</th>
-                                    <th>Product</th>
                                     <th class="text-right">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($stock_list as $one)
-                                <tr>
-                                        <td>{{ $one->quantity }}</td>
-                                        <td>{{ $one->registration_date }}</td>
-                                        <td>{{ $one->expiry_date }}</td>
-                                        <td>{{ $one->description }}</td>
-                                        <td>{{ $one->product_id }}</td>
-                                        <td>{{ $one->supplier_id }}</td>
-                                        <td></td>
+                                    <tr>
+                                        <td>{{ $one->title }}</td>
+                                        <td>{{ $one->user_name }}</td>
+                                        <td>{{ number_format($one->quantity)}}</td>
+                                         <td>{{ substr($one->registration_date, 0, 10) }}</td>
+                                         <td>{{ substr($one->expiry_date, 0, 10) }}</td>
+                                        <td class="text-right">
+                                            <div class="btn-group" role="group" aria-label="user_actions">
+                                                <a href="{{ url('admin/stock') }}/{{ $one->id }}"
+                                                    data-toggle="tooltip" data-placement="top" title="View"
+                                                    class="btn btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

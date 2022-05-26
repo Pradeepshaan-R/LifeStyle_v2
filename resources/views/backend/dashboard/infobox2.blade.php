@@ -4,9 +4,9 @@
             <div class="d-flex align-items-center">
                 <i class="fas fa-award fa-3x"></i>
                 <div class="ml-4">
-                    <h4 class="font-weight-light">Number of Lawyers</h4>
-                    <h3 class="mb-3">75</h3>
-                    <p class="mb-0 font-weight-light">39% more growth </p>
+                    <h4 class="font-weight-light">Category Summary</h4>
+                    <h3 class="mb-3">{{ count($categories) }}</h3>
+                    <p class="mb-0 font-weight-light">Active : {{ $categoryActivePercentage }}%</p>
                 </div>
             </div>
         </div>
@@ -17,9 +17,9 @@
             <div class="d-flex align-items-center">
                 <i class="fas fa-address-card fa-3x"></i>
                 <div class="ml-4">
-                    <h4 class="font-weight-light">Closed Cases</h4>
-                    <h3 class="mb-3">75</h3>
-                    <p class="mb-0 font-weight-light">39% more growth </p>
+                    <h4 class="font-weight-light">Product Summary</h4>
+                    <h3 class="mb-3">{{ count($products) }}</h3>
+                     <p class="mb-0 font-weight-light">Available : {{ $productAvailablePercentage }}%</p>
                 </div>
             </div>
         </div>
@@ -30,9 +30,9 @@
             <div class="d-flex align-items-center">
                 <i class="fas fa-user fa-3x"></i>
                 <div class="ml-4">
-                    <h4 class="font-weight-light">Ongoing Cases</h4>
-                    <h3 class="mb-3">75, 650</h3>
-                    <p class="mb-0 font-weight-light">39% more growth </p>
+                    <h4 class="font-weight-light">Stock Summary</h4>
+                    <h3 class="mb-3">{{ count($stocks) }}</h3>
+                    {{-- <p class="mb-0 font-weight-light">Active : {{ $categoryActivePercentage }}%</p> --}}
                 </div>
             </div>
         </div>

@@ -30,41 +30,54 @@
 
             <section class="card-body">
                 <div class="form-group row">
-                    <label for="category_id" class="col-sm-2 col-form-label text-lg-right text-sm-start">Category</label>
+                    <label for="product_id" class="col-sm-2 col-form-label text-lg-right text-sm-start">Product</label>
 
                     <div class="col-sm-4">
-                        <select class="form-control" name='category_id' id="category_id" required>
-                            <option value="">--Category--</option>
-                            @foreach (App\Models\Category::get() as $value)
-                                <option value="{{ $value->id }}" {{ old('type') == $value->id ? 'selected' : '' }}>
+                        <select class="form-control" name='product_id' id="product_id" required>
+                            <option value="">--Product--</option>
+                            @foreach (App\Models\Product::get() as $value)
+                                <option value="{{ $value->id }}" {{ old('product_id') == $value->id ? 'selected' : '' }}>
                                     {{ $value->title }}</option>
                             @endforeach
                         </select>
-                        @error('type')
+                        @error('product_id')
+                            <span class="text-danger error">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <label for="supplier_id" class="col-sm-1 col-form-label text-lg-right text-sm-start">Supplier</label>
+
+                    <div class="col-sm-4">
+                        <select class="form-control" name='supplier_id' id="supplier_id" required>
+                            <option value="">--Supplier--</option>
+                            @foreach (App\Models\Supplier::get() as $value)
+                                <option value="{{ $value->id }}" {{ old('supplier_id') == $value->id ? 'selected' : '' }}>
+                                    {{ $value->user_name }}</option>
+                            @endforeach
+                        </select>
+                        @error('supplier_id')
                             <span class="text-danger error">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="title" class="col-sm-2 col-form-label text-lg-right">Title</label>
+                    <label for="registration_date" class="col-sm-2 col-form-label text-lg-right text-sm-start">Registration Date</label>
 
-                    <div class="col-sm-6 pr-0">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Title of the Product"
-                            value="{{ old('title') }}" required />
-                        @error('title')
+                    <div class="col-sm-4">
+                        <input type="date" required class="form-control" min="{{ date('Y-m-d') }}" id="registration_date"
+                            name="registration_date" placeholder="Registration Date" value="{{ old('registration_date') }}" />
+                        @error('registration_date')
                             <span class="text-danger error">{{ $message }}</span>
                         @enderror
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="price" class="col-sm-2 col-form-label text-lg-right">Price</label>
+                    <label for="expiry_date" class="col-sm-1 px-0 col-form-label text-lg-right text-sm-start">Expiry Date</label>
 
-                    <div class="col-sm-6 pr-0">
-                        <input type="number" class="form-control" id="price" name="price" placeholder="Price of the Product"
-                            value="{{ old('price') }}" required />
-                        @error('price')
+                    <div class="col-sm-4">
+                        <input type="date" required class="form-control" min="{{ date('Y-m-d') }}" id="expiry_date"
+                            name="expiry_date" placeholder="Expiry Date" value="{{ old('expiry_date') }}" />
+                        @error('expiry_date')
                             <span class="text-danger error">{{ $message }}</span>
                         @enderror
                     </div>
@@ -73,7 +86,7 @@
                 <div class="form-group row ml-1">
                     <label for="description" class="col-sm-2 col-form-label text-lg-right text-sm-start">Description</label>
 
-                    <textarea class="form-control col-sm-6" maxlength="250" name="description" id="description"
+                    <textarea class="form-control col-sm-9" maxlength="250" name="description" id="description"
                         rows="5" value="{{ old('description') }}"></textarea>
                     @error('description')
                         <span class="text-danger error">{{ $message }}</span>
@@ -81,12 +94,12 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="document" class="col-sm-2 col-form-label text-lg-right text-sm-start">Product Image</label>
+                    <label for="quantity" class="col-sm-2 col-form-label text-lg-right">Quantity</label>
 
-                    <div class="col-sm-3">
-                        <input type="file" class="col-sm-9" id="document" name="document"
-                            placeholder="Support document" value="{{ old('document') }}" />
-                        @error('document')
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Product Quantity"
+                            value="{{ old('quantity') }}" required />
+                        @error('quantity')
                             <span class="text-danger error">{{ $message }}</span>
                         @enderror
                     </div>

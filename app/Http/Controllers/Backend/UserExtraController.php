@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Backend;
 
+use DB;
+use Log;
+use Hash;
+use Exception;
+use App\Models\UserExtra;
+use Illuminate\Http\Request;
 use App\Domains\Auth\Models\Role;
 use App\Domains\Auth\Models\User;
-use App\Domains\Auth\Services\PermissionService;
+use App\Http\Controllers\Controller;
 use App\Domains\Auth\Services\RoleService;
 use App\Domains\Auth\Services\UserService;
-use App\Http\Controllers\Controller;
-use App\Models\UserExtra;
-use DB;
-use Hash;
-use Log;
-use Illuminate\Http\Request;
+use App\Domains\Auth\Services\PermissionService;
 
 class UserExtraController extends Controller
 {
@@ -57,7 +58,7 @@ class UserExtraController extends Controller
             ->leftJoin('user_extras as ue', 'ue.user_id', 'users.id');
 
         if ($name) {
-            $user_list = $user_list->where("name", "LIKE", '%' . $name . '%');
+            $user_list = $user_list->where("users.name", "LIKE", '%' . $name . '%');
         }
         if ($status && $status != -1) {
             $active = '0';

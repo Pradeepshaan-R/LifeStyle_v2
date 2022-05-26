@@ -9,7 +9,7 @@
 @section('content')
 <x-backend.card>
     <x-slot name="header">
-        @lang('Welcome :Name', ['name' => $logged_in_user->name]) - info box 1
+        @lang('Welcome :Name', ['name' => $logged_in_user->name])
     </x-slot>
 
     <x-slot name="body">
@@ -27,7 +27,7 @@
     </x-slot>
 </x-backend.card>
 
-<x-backend.card>
+{{-- <x-backend.card>
     <x-slot name="header">
         @lang('Welcome :Name', ['name' => $logged_in_user->name]) - info box 3
     </x-slot>
@@ -63,6 +63,6 @@
             </aside>
         </section>
     </x-slot>
-</x-backend.card>
+</x-backend.card> --}}
 
 @endsection

@@ -47,25 +47,25 @@
 </style>
 
 <section class="row d-flex justify-content-center mt-3">
-    <a class="col-md-6 col-lg-3" href="{{ route('admin.book.index') }}">
+    <a class="col-md-6 col-lg-3 text-dark" href="{{ route('admin.user_extra.index') }}" style="text-decoration:none">
         <div class="info-box">
             <span class="info-box-icon bg-info"><i class="far fa-address-card"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text">Applicants</span>
-                <span class="info-box-number">100</span>
+                <span class="info-box-text">Registered Users</span>
+                <span class="info-box-number">{{ count($users) }}</span>
             </div>
         </div>
         <!-- /.info-box -->
     </a>
     <!-- /.col -->
-    <a class="col-md-6 col-lg-3" href="{{ route('admin.book.index') }}">
+    <a class="col-md-6 col-lg-3 text-dark" href="{{ route('admin.supplier.index') }}" style="text-decoration:none">
         <div class="info-box">
             <span class="info-box-icon bg-success"><i class="fas fa-anchor"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text">Trademarks</span>
-                <span class="info-box-number">200</span>
+                <span class="info-box-text">Suppliers</span>
+                <span class="info-box-number">{{ count($suppliers) }}</span>
             </div>
         </div>
         <!-- /.info-box -->
@@ -75,29 +75,16 @@
     <!-- fix for small devices only -->
     <div class="clearfix visible-sm-block"></div>
 
-    <a class="col-md-6 col-lg-3" href="{{ route('admin.book.index') }}">
+    <a class="col-md-6 col-lg-3 text-dark" href="{{ route('admin.user_extra.index') }}" style="text-decoration:none">
         <div class="info-box">
             <span class="info-box-icon bg-warning"><i class="fas fa-hourglass-half"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text">Expiring</span>
+                <span class="info-box-text">Customers</span>
                 <span class="info-box-number">300</span>
             </div>
         </div>
         <!-- /.info-box -->
     </a>
     <!-- /.col -->
-    <a class="col-md-6 col-lg-3" href="#">
-        <div class="info-box">
-            <span class="info-box-icon bg-danger"><i class="fas fa-poll-h"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">Followup</span>
-                <span class="info-box-number">400</span>
-            </div>
-        </div>
-        <!-- /.info-box -->
-    </a>
-    <!-- /.col -->
-
 </section>
